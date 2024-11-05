@@ -1,0 +1,130 @@
+erDiagram
+         %% Bronze Tables
+    bronze_deposit {
+        int id PK
+        timestamp event_timestamp
+        string entity_id
+        float amount
+        string currency
+        string tx_status
+    }
+
+    bronze_event {
+        int id PK
+        timestamp event_timestamp
+        string entity_id
+        string event_name
+    }
+
+    bronze_user_id {
+        string user_id PK
+    }
+
+    bronze_user_level {
+        string user_id PK
+        string jurisdiction
+        int level
+        timestamp event_timestamp
+    }
+
+    bronze_withdrawals {
+        int id PK
+        timestamp event_timestamp
+        string entity_id
+        float amount
+        string interface
+        string currency
+        string tx_status
+    }
+
+    %% Silver Tables
+    silver_deposit {
+        int id PK
+        timestamp event_timestamp
+        string entity_id
+        float amount
+        string currency
+        string tx_status
+    }
+
+    silver_event {
+        int id PK
+        timestamp event_timestamp
+        string entity_id
+        string event_name
+    }
+
+    silver_user_id {
+        string user_id PK
+    }
+
+    silver_user_level {
+        string user_id PK
+        string jurisdiction
+        int level
+        timestamp event_timestamp
+    }
+
+    silver_withdrawals {
+        int id PK
+        timestamp event_timestamp
+        string entity_id
+        float amount
+        string interface
+        string currency
+        string tx_status
+    }
+
+    %% Gold Tables
+    fact_deposit_transactions {
+        int transaction_id PK
+        timestamp transaction_timestamp
+        string entity_id FK
+        float amount
+        string tx_status
+    }
+
+    fact_withdrawal_transactions {
+        int transaction_id PK
+        timestamp transaction_timestamp
+        string entity_id FK
+        float amount
+        string tx_status
+    }
+
+    dim_entity {
+        string entity_id PK
+        string entity_type
+        string jurisdiction
+        int user_level
+        date start_date
+        date end_date
+        boolean is_current
+    }
+
+    dim_date {
+        date full_date PK
+        string day_of_week
+        int month
+        int quarter
+        int year
+    }
+
+    %% Relationships
+    fact_deposit_transactions ||--o{ dim_entity : "entity_id"
+    fact_deposit_transactions ||--o{ dim_date : "transaction_timestamp"
+    fact_withdrawal_transactions ||--o{ dim_entity : "entity_id"
+    fact_withdrawal_transactions ||--o{ dim_date : "transaction_timestamp"
+
+    %% Bronze to Silver Relationships
+    bronze_deposit ||--o{ silver_deposit : "id"
+    bronze_event ||--o{ silver_event : "id"
+    bronze_user_id ||--o{ silver_user_id : "user_id"
+    bronze_user_level ||--o{ silver_user_level : "user_id"
+    bronze_withdrawals ||--o{ silver_withdrawals : "id"
+
+    %% Silver to Gold Relationships
+    silver_deposit ||--o{ fact_deposit_transactions : "entity_id"
+    silver_withdrawals ||--o{ fact_withdrawal_transactions : "entity_id"
+    silver_user_id ||--o{ dim_entity : "entity_id"
+    silver_user_level ||--o{ dim_entity : "entity_id"

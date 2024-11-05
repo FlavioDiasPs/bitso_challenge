@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "bitso-challenge"
+version = "0.1.0"
+description = ""
+authors = ["Flavio Pegas <flaviodiasps@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+sqlalchemy = "^2.0.36"
+pyarrow = "^18.0.0"
+schedule = "^1.2.2"
+networkx = "^3.4.2"
+pandas = "^2.2.3"
+deltalake = "^0.21.0"
+duckdb = "1.1.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.10.0"
+pylint = "^3.3.1"
+matplotlib = "^3.9.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
