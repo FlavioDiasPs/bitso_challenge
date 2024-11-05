@@ -60,6 +60,10 @@ It is complex to keep up with data changes
 ## Issues during project development
 I encountered a few issues during this project that I would like to explain:
 
+### Github only accept files under 100mb
+- I wanted to add all files there, so I compacted all raw, delta and sqlite data.
+- If you want to test it or see it, you will have to umcompress it.
+
 ### I Am Not at Home
 - Currently, I am not using my personal computer.
 - This has led to multiple problems with permissions.
@@ -111,6 +115,10 @@ Creating SCD Type 2 without proper environment is challenging, I managed to buil
 - Implementation: `src/dal/queries/populate_scd_dim_entity_duckdb.py`
 - All queries used are located in `src/dal/queries`.
 - Funny story: DuckDB released 1.1.3 while I was testing and broke multiple things with a generic error. It took me a while to figure that out... https://pypi.org/project/duckdb/#history
+
+### Running the project
+- Before running it, decompress the raw.7z
+- I left the output folder structure for csv and delta there, so the program will generate all csv, delta and sqlite data automatically.
 
 ## Things That Did Not Work Out Due to Time Constraints
 - **Incremental Batches**:
