@@ -1,9 +1,3 @@
-data/bitso.db
-data/raw/
-data/delta/
-data/csv/bronze/
-data/csv/silver/
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

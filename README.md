@@ -84,12 +84,14 @@ I considered providing Databricks code, which would have been easier, but the ex
 - Silver and gold analytical processes should certainly be conducted using Databricks PySpark.
 
 ## What Was Built?
+### ERD
 I used **Mermaid** to create the ERD:
 - [Mermaid Chart](https://www.mermaidchart.com/)
 - Both the ERD Mermaid code and image can be found here:
   - `data/erd/er_diagram.png`
   - `data/erd/erd_mermaid.mmd`
 
+### File Formats
 Nowadays, using one of the top three analytical file formats is essential (hudi, iceberg and delta). 
 With that in mind, I used Delta Lake with DuckDB to create bronze, silver, and gold tables. I saved all of them in three formats:
 - **Delta**: `data/delta`
@@ -98,6 +100,7 @@ With that in mind, I used Delta Lake with DuckDB to create bronze, silver, and g
 
 Exercise queries can be found here: `data/queries.sql`.
 
+### Dag
 Since I cannot install Airflow, I decided to create my own DAG:
 - I used the `networkx` library to assist with that.
 - You can export the DAG, which will generate this image: `data/dag.png`.
